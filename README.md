@@ -91,6 +91,10 @@ make run
 ```
 netracker/
 ├── assets/                  # Visual assets (AppIcon, logo, DMG background)
+│   ├── identity/            # v3 logo source of truth (original, appicon, menubar)
+│   ├── logo.png             # Transparent WiFi mark (README, Settings > About)
+│   ├── app-icon.png         # 1024x1024 macOS squircle icon (README header)
+│   └── dmg-background*.png  # Installer backgrounds
 ├── macos/                   # Native macOS Swift/SwiftUI app
 │   ├── NetTracker/
 │   │   ├── App/             # App lifecycle, NSApplicationDelegate, AppState
@@ -107,9 +111,21 @@ netracker/
 │       ├── tracker/         # Sampling, delta computation, gap detection
 │       ├── persistence/     # Atomic history persistence
 │       └── ipc/             # Unix domain socket JSON server
-├── scripts/                 # Automation scripts (build, bundle, sign, dmg)
+├── scripts/                 # Automation scripts (build, bundle, sign, dmg, assets)
 └── Makefile                 # Make targets for development and release
 ```
+
+### Regenerating visual assets
+
+The v3 Apple-blue WiFi identity lives in `assets/identity/` (source of truth).
+Derived files (`assets/logo.png`, `assets/app-icon.png`, `AppIcon.icns`,
+DMG backgrounds) are generated — do not edit by hand:
+
+```sh
+make assets
+```
+
+See `assets/identity/README.md` for the full identity layout.
 
 ---
 

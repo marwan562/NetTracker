@@ -1,7 +1,10 @@
-.PHONY: agent app bundle sign notarize test lint run clean dmg release
+.PHONY: agent app bundle sign notarize test lint run clean dmg release assets
 
 agent:
 	sh scripts/build.sh
+
+assets:
+	python3 scripts/generate_assets.py
 
 test:
 	cd agent && go test -v ./...
