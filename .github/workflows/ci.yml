@@ -9,7 +9,7 @@ on:
 jobs:
   go-lint-test:
     name: Go Lint & Test
-    runs-on: macos-latest
+    runs-on: ubuntu-latest
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
@@ -32,7 +32,7 @@ jobs:
 
       - name: Install golangci-lint
         run: |
-          curl -sSfL https://raw.githubusercontent.com/golangci/golangci-lint/master/install.sh | sh -s -- -b $(go env GOPATH)/bin
+          go install github.com/golangci/golangci-lint/cmd/golangci-lint@latest
 
       - name: Run golangci-lint
         run: |
