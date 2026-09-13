@@ -11,8 +11,7 @@ struct StatusMenu: View {
 
             Button("Open Usage History...") {
                 SoundManager.shared.playSelect()
-                NSApp.activate(ignoringOtherApps: true)
-                NSApp.sendAction(Selector(("showSettingsWindow:")), to: nil, from: nil)
+                WindowManager.shared.showSettings(tab: .history)
             }
 
             Divider()
@@ -23,8 +22,8 @@ struct StatusMenu: View {
 
             Text("Current Session")
                 .font(.headline)
-            LabeledContent("↓ Download", value: ByteFormat.string(bytes: appState.snapshot.sessionDownloadBytes))
-            LabeledContent("↑ Upload", value: ByteFormat.string(bytes: appState.snapshot.sessionUploadBytes))
+            Text("↓ Download: \(ByteFormat.string(bytes: appState.snapshot.sessionDownloadBytes))")
+            Text("↑ Upload: \(ByteFormat.string(bytes: appState.snapshot.sessionUploadBytes))")
 
             Divider()
 
@@ -33,20 +32,19 @@ struct StatusMenu: View {
             Divider()
 
             Menu("Network Details") {
-                LabeledContent("Status", value: connectionStatusString)
-                LabeledContent("Engine", value: agentStatusString)
+                Text("Status: \(connectionStatusString)")
+                Text("Engine: \(agentStatusString)")
             }
 
             Divider()
 
             Button("Settings...") {
                 SoundManager.shared.playSelect()
-                NSApp.activate(ignoringOtherApps: true)
-                NSApp.sendAction(Selector(("showSettingsWindow:")), to: nil, from: nil)
+                WindowManager.shared.showSettings(tab: .general)
             }
 
-            Button("Reset Statistics") {
-                Task { await appState.resetStatistics() }
+            Button("Reset Statistics...") {
+                WindowManager.shared.confirmAndReset()
             }
 
             Divider()

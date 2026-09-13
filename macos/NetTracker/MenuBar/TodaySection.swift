@@ -7,10 +7,10 @@ struct TodaySection: View {
         Group {
             Text("Today")
                 .font(.headline)
-            LabeledContent("↓ Download", value: ByteFormat.string(bytes: appState.snapshot.todayDownloadBytes))
-            LabeledContent("↑ Upload", value: ByteFormat.string(bytes: appState.snapshot.todayUploadBytes))
-            LabeledContent("↓ Down rate", value: ByteFormat.string(bytes: appState.snapshot.currentDownloadRate, rate: true))
-            LabeledContent("↑ Up rate", value: ByteFormat.string(bytes: appState.snapshot.currentUploadRate, rate: true))
+            Text("↓ Download: \(ByteFormat.string(bytes: appState.snapshot.todayDownloadBytes))")
+            Text("↑ Upload: \(ByteFormat.string(bytes: appState.snapshot.todayUploadBytes))")
+            Text("↓ Speed: \(ByteFormat.string(bytes: appState.snapshot.currentDownloadRate, rate: true))")
+            Text("↑ Speed: \(ByteFormat.string(bytes: appState.snapshot.currentUploadRate, rate: true))")
         }
     }
 }

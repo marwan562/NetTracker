@@ -9,10 +9,10 @@ enum SettingsTab: String, CaseIterable, Identifiable {
 }
 
 struct SettingsView: View {
-    @State private var selectedTab: SettingsTab = .history
+    @ObservedObject var windowManager = WindowManager.shared
 
     var body: some View {
-        TabView(selection: $selectedTab) {
+        TabView(selection: $windowManager.selectedTab) {
             UsageHistoryView()
                 .tabItem {
                     Label("Usage History", systemImage: "chart.bar.xaxis")

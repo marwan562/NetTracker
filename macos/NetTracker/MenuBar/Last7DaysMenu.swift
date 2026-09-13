@@ -9,7 +9,10 @@ struct Last7DaysMenu: View {
                 Text("No history yet")
             } else {
                 ForEach(appState.last7Days.reversed()) { day in
-                    LabeledContent(day.label, value: ByteFormat.string(bytes: day.downloadBytes + day.uploadBytes))
+                    Button("\(day.label): \(ByteFormat.string(bytes: day.downloadBytes + day.uploadBytes))") {
+                        SoundManager.shared.playSelect()
+                        WindowManager.shared.showSettings(tab: .history)
+                    }
                 }
             }
         }

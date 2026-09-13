@@ -1,10 +1,15 @@
 import SwiftUI
 
+@MainActor
 final class AppDelegate: NSObject, NSApplicationDelegate {
     var onTerminate: (() -> Void)?
 
     func applicationWillTerminate(_ notification: Notification) {
         onTerminate?()
+    }
+
+    @objc func showSettingsWindow(_ sender: Any?) {
+        WindowManager.shared.showSettings(tab: .general)
     }
 }
 
@@ -49,6 +54,7 @@ struct NetTrackerApp: App {
     private func boot() {
         guard !hasBooted else { return }
         hasBooted = true
+        WindowManager.shared.configure(appState: appState, loginItems: loginItems)
         networkMonitor.onPathChange = {
             Task { @MainActor in
                 appState.networkStatus = networkMonitor.status
