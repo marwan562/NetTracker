@@ -17,6 +17,9 @@ func (f *fakeHandler) Snapshot() tracker.UsageSnapshot { return f.tr.Snapshot() 
 func (f *fakeHandler) Last7Days() []persistence.DayEntry {
 	return persistence.Last7Days(f.history, time.Now())
 }
+func (f *fakeHandler) History(days int) []persistence.DayEntry {
+	return persistence.LastNDays(f.history, time.Now(), days)
+}
 func (f *fakeHandler) Reset()              { f.tr.Reset() }
 func (f *fakeHandler) Rebaseline(_ string) { f.tr.Rebaseline() }
 
@@ -33,9 +36,17 @@ func TestSnapshotRequest(t *testing.T) {
 func TestHistoryRequest(t *testing.T) {
 	tr := tracker.NewTracker(time.Now(), nil)
 	h := &fakeHandler{tr: tr, history: map[string]tracker.DailyUsage{}}
-	resp := HandleRequest(h, Request{Version: 1, Type: TypeHistory, Days: 7})
+
+	// Default (no days specified)
+	resp := HandleRequest(h, Request{Version: 1, Type: TypeHistory})
 	if resp.Type != TypeHistory || len(resp.Days) != 7 {
-		t.Fatalf("history must return 7 entries, got %+v", resp)
+		t.Fatalf("history must default to 7 entries, got %+v", resp)
+	}
+
+	// Explicit 14 days
+	resp14 := HandleRequest(h, Request{Version: 1, Type: TypeHistory, Days: 14})
+	if resp14.Type != TypeHistory || len(resp14.Days) != 14 {
+		t.Fatalf("history must return 14 entries, got %+v", resp14)
 	}
 }
 

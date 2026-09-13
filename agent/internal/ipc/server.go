@@ -19,6 +19,7 @@ import (
 type Handler interface {
 	Snapshot() tracker.UsageSnapshot
 	Last7Days() []persistence.DayEntry
+	History(days int) []persistence.DayEntry
 	Reset()
 	Rebaseline(reason string)
 }
@@ -120,10 +121,14 @@ func (s *Server) dispatch(req Request) Response {
 			DownloadRate: snap.CurrentDownloadRate,
 		}
 	case TypeHistory:
+		days := req.Days
+		if days <= 0 {
+			days = 7
+		}
 		return Response{
 			Version: CurrentVersion,
 			Type:    TypeHistory,
-			Days:    s.handler.Last7Days(),
+			Days:    s.handler.History(days),
 		}
 	case TypeReset:
 		s.handler.Reset()

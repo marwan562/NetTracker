@@ -16,12 +16,15 @@ type DayEntry struct {
 	IsToday       bool   `json:"is_today"`
 }
 
-// Last7Days returns exactly seven entries: today plus six prior local days.
+// LastNDays returns exactly n entries: today plus (n-1) prior local days.
 // Missing days are zero-filled.
-func Last7Days(history map[string]tracker.DailyUsage, now time.Time) []DayEntry {
+func LastNDays(history map[string]tracker.DailyUsage, now time.Time, n int) []DayEntry {
+	if n <= 0 {
+		n = 7
+	}
 	now = now.Local()
-	out := make([]DayEntry, 0, 7)
-	for i := 6; i >= 0; i-- {
+	out := make([]DayEntry, 0, n)
+	for i := n - 1; i >= 0; i-- {
 		day := now.AddDate(0, 0, -i)
 		key := day.Format("2006-01-02")
 		u := history[key]
@@ -40,4 +43,10 @@ func Last7Days(history map[string]tracker.DailyUsage, now time.Time) []DayEntry 
 	}
 	sort.Slice(out, func(i, j int) bool { return out[i].Date < out[j].Date })
 	return out
+}
+
+// Last7Days returns exactly seven entries: today plus six prior local days.
+// Missing days are zero-filled.
+func Last7Days(history map[string]tracker.DailyUsage, now time.Time) []DayEntry {
+	return LastNDays(history, now, 7)
 }

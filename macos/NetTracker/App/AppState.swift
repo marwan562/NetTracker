@@ -4,6 +4,9 @@ import Foundation
 class AppState: ObservableObject {
     @Published var snapshot = UsageSnapshot.empty
     @Published var last7Days: [DailyUsage] = []
+    @Published var historyDays: [DailyUsage] = []
+    @Published var selectedHistoryRange: Int = 7
+    @Published var isLoadingHistory: Bool = false
     @Published var networkStatus: NetworkStatus = .unknown
     @Published var agentConnection: AgentConnection = .connecting
 
@@ -32,11 +35,8 @@ class AppState: ObservableObject {
                 let snap = try await client.getSnapshot()
                 snapshot = snap
                 agentConnection = .connected
-                if last7Days.isEmpty || Date().timeIntervalSince(lastHistoryFetch) >= 60 {
-                    if let days = try? await client.getHistory(days: 7) {
-                        last7Days = days
-                        lastHistoryFetch = Date()
-                    }
+                if historyDays.isEmpty || Date().timeIntervalSince(lastHistoryFetch) >= 30 {
+                    await fetchHistory(days: selectedHistoryRange)
                 }
             } catch {
                 agentConnection = .disconnected(error.localizedDescription)
@@ -45,14 +45,32 @@ class AppState: ObservableObject {
         }
     }
 
-    func refreshHistory() async {
-        if let days = try? await client.getHistory(days: 7) {
-            last7Days = days
+    func fetchHistory(days: Int? = nil) async {
+        let count = days ?? selectedHistoryRange
+        isLoadingHistory = true
+        defer { isLoadingHistory = false }
+        if let items = try? await client.getHistory(days: count) {
+            historyDays = items
+            if count == 7 {
+                last7Days = items
+            }
             lastHistoryFetch = Date()
         }
     }
 
+    func setHistoryRange(_ range: Int) async {
+        guard selectedHistoryRange != range else { return }
+        selectedHistoryRange = range
+        SoundManager.shared.playSelect()
+        await fetchHistory(days: range)
+    }
+
+    func refreshHistory() async {
+        await fetchHistory(days: selectedHistoryRange)
+    }
+
     func resetStatistics() async {
+        SoundManager.shared.playReset()
         try? await client.reset()
         snapshot = .empty
         await refreshHistory()
@@ -69,10 +87,17 @@ final class MockAppState: AppState {
         snapshot = UsageSnapshot(sessionUploadBytes: 23_000_000, sessionDownloadBytes: 184_000_000,
                                  todayUploadBytes: 284_000_000, todayDownloadBytes: 1_520_000_000,
                                  currentUploadRate: 48_000, currentDownloadRate: 1_240_000)
-        last7Days = [
-            DailyUsage(date: "2026-09-13", label: "Today", uploadBytes: 284_000_000, downloadBytes: 1_520_000_000, isToday: true),
+        let mockDays: [DailyUsage] = [
+            DailyUsage(date: "2026-09-07", label: "Sep 07", uploadBytes: 120_000_000, downloadBytes: 650_000_000, isToday: false),
+            DailyUsage(date: "2026-09-08", label: "Sep 08", uploadBytes: 210_000_000, downloadBytes: 1_120_000_000, isToday: false),
+            DailyUsage(date: "2026-09-09", label: "Sep 09", uploadBytes: 90_000_000, downloadBytes: 430_000_000, isToday: false),
+            DailyUsage(date: "2026-09-10", label: "Sep 10", uploadBytes: 340_000_000, downloadBytes: 2_450_000_000, isToday: false),
+            DailyUsage(date: "2026-09-11", label: "Sep 11", uploadBytes: 180_000_000, downloadBytes: 890_000_000, isToday: false),
             DailyUsage(date: "2026-09-12", label: "Sep 12", uploadBytes: 190_000_000, downloadBytes: 982_000_000, isToday: false),
+            DailyUsage(date: "2026-09-13", label: "Today", uploadBytes: 284_000_000, downloadBytes: 1_520_000_000, isToday: true),
         ]
+        last7Days = mockDays
+        historyDays = mockDays
         networkStatus = .connected("Wi-Fi")
         agentConnection = .connected
     }

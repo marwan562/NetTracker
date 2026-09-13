@@ -40,6 +40,7 @@ struct NetTrackerApp: App {
 
         Settings {
             SettingsView()
+                .environmentObject(appState)
                 .environmentObject(loginItems)
         }
     }

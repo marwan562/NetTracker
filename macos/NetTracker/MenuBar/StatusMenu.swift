@@ -6,30 +6,51 @@ struct StatusMenu: View {
 
     var body: some View {
         Group {
-            Text("🌐 Network Usage")
+            Text("NetTracker")
                 .font(.headline)
-            TodaySection()
+
+            Button("Open Usage History...") {
+                SoundManager.shared.playSelect()
+                NSApp.activate(ignoringOtherApps: true)
+                NSApp.sendAction(Selector(("showSettingsWindow:")), to: nil, from: nil)
+            }
+
             Divider()
+
+            TodaySection()
+
+            Divider()
+
             Text("Current Session")
                 .font(.headline)
             LabeledContent("↓ Download", value: ByteFormat.string(bytes: appState.snapshot.sessionDownloadBytes))
             LabeledContent("↑ Upload", value: ByteFormat.string(bytes: appState.snapshot.sessionUploadBytes))
+
             Divider()
+
             Last7DaysMenu()
+
             Divider()
+
             Menu("Network Details") {
                 LabeledContent("Status", value: connectionStatusString)
                 LabeledContent("Engine", value: agentStatusString)
             }
+
             Divider()
+
             Button("Settings...") {
+                SoundManager.shared.playSelect()
                 NSApp.activate(ignoringOtherApps: true)
                 NSApp.sendAction(Selector(("showSettingsWindow:")), to: nil, from: nil)
             }
+
             Button("Reset Statistics") {
                 Task { await appState.resetStatistics() }
             }
+
             Divider()
+
             Button("Quit NetTracker") { NSApplication.shared.terminate(nil) }
         }
     }

@@ -109,9 +109,14 @@ func (a *app) checkpoint(reason string) {
 // Snapshot implements ipc.Handler.
 func (a *app) Snapshot() tracker.UsageSnapshot { return a.tracker.Snapshot() }
 
+// History implements ipc.Handler.
+func (a *app) History(days int) []persistence.DayEntry {
+	return persistence.LastNDays(a.tracker.HistoryCopy(), time.Now(), days)
+}
+
 // Last7Days implements ipc.Handler.
 func (a *app) Last7Days() []persistence.DayEntry {
-	return persistence.Last7Days(a.tracker.HistoryCopy(), time.Now())
+	return a.History(7)
 }
 
 // Reset implements ipc.Handler.

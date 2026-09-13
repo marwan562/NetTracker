@@ -7,6 +7,7 @@ struct MenuBarStatusView: View {
         HStack(spacing: 4) {
             Image(systemName: iconName)
             Text("↓ \(ByteFormat.string(bytes: appState.snapshot.todayDownloadBytes))")
+                .monospacedDigit()
         }
     }
 
