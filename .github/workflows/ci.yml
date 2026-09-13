@@ -1,0 +1,73 @@
+name: CI
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  go-lint-test:
+    name: Go Lint & Test
+    runs-on: macos-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Go
+        uses: actions/setup-go@v5
+        with:
+          go-version: '1.23'
+          cache-dependency-path: agent/go.sum
+
+      - name: Verify dependencies
+        run: |
+          cd agent
+          go mod verify
+
+      - name: Run Go Tests
+        run: |
+          cd agent
+          go test -v -race ./...
+
+      - name: Run golangci-lint
+        uses: golangci/golangci-lint-action@v6
+        with:
+          version: latest
+          working-directory: agent
+          args: --timeout=5m
+
+  macos-bundle:
+    name: macOS Build & Bundle
+    runs-on: macos-14
+    needs: go-lint-test
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Go
+        uses: actions/setup-go@v5
+        with:
+          go-version: '1.23'
+          cache-dependency-path: agent/go.sum
+
+      - name: Build Agent Binary
+        run: sh scripts/build.sh
+
+      - name: Bundle NetTracker.app
+        run: sh scripts/bundle.sh
+
+      - name: Verify App Structure
+        run: |
+          test -f build/NetTracker.app/Contents/MacOS/NetTracker
+          test -f build/NetTracker.app/Contents/Library/LoginItems/NetTrackerAgent
+          test -f build/NetTracker.app/Contents/Info.plist
+
+      - name: Ad-hoc Sign App Bundle
+        run: sh scripts/sign.sh
+
+      - name: Upload App Artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: NetTracker.app
+          path: build/NetTracker.app

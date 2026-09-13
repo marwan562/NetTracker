@@ -1,0 +1,19 @@
+.crush
+build/
+.DS_Store
+*.swp
+*.tmp
+*.sock
+*.bak
+
+# Xcode / Apple
+*.xcuserstate
+project.xcworkspace
+xcuserdata/
+DerivedData/
+.build/
+
+# IDEs
+.idea/
+.vscode/
+

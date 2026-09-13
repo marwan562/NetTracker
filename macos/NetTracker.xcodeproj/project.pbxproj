@@ -1,0 +1,57 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {};
+	objectVersion = 56;
+	objects = {
+		B89088378C2C4A64ABA9B202 /* AppState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppState.swift; sourceTree = "<group>"; };
+		6DA09E04896642CCBB796C27 /* NetTrackerApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetTrackerApp.swift; sourceTree = "<group>"; };
+		CEB75CE5483249D1ACCAA6DE /* Last7DaysMenu.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Last7DaysMenu.swift; sourceTree = "<group>"; };
+		4D82A54D8FB04619B51BA974 /* MenuBarStatusView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuBarStatusView.swift; sourceTree = "<group>"; };
+		AB6134A6DC6242BDA5ECF70D /* StatusMenu.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatusMenu.swift; sourceTree = "<group>"; };
+		7800D75124C640B8AB10D847 /* TodaySection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodaySection.swift; sourceTree = "<group>"; };
+		0324730B013240E9A2BCDC03 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
+		B1BF209124CD4926AD07C9DD /* GoAgentClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoAgentClient.swift; sourceTree = "<group>"; };
+		8F6D01CDED4C435EA948F3F5 /* LoginItemManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginItemManager.swift; sourceTree = "<group>"; };
+		9E091D04CB7A4987B70D7790 /* NetworkMonitor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkMonitor.swift; sourceTree = "<group>"; };
+		AD6880BA6DC84D708C2EE381 /* SleepMonitor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SleepMonitor.swift; sourceTree = "<group>"; };
+		B6E2D51F3AE0424BB47F546B /* NetworkStatus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkStatus.swift; sourceTree = "<group>"; };
+		5147A60500C041988BD1E6F8 /* UsageSnapshot.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UsageSnapshot.swift; sourceTree = "<group>"; };
+		E89C701D91AC4994A5C1F437 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		B310F629BF4447BBA0836F9A /* NetTracker.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = NetTracker.entitlements; sourceTree = "<group>"; };
+		670E4E85ED3C4CB290F13E2D /* NetTracker.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NetTracker.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		E4F4A5C029D44388A43CD9BB /* App */ = {isa = PBXGroup; children = (B89088378C2C4A64ABA9B202, 6DA09E04896642CCBB796C27); name = App; sourceTree = "<group>"; };
+		C12F737BAC9A42F3AB953467 /* MenuBar */ = {isa = PBXGroup; children = (CEB75CE5483249D1ACCAA6DE, 4D82A54D8FB04619B51BA974, AB6134A6DC6242BDA5ECF70D, 7800D75124C640B8AB10D847); name = MenuBar; sourceTree = "<group>"; };
+		0A6EDB1A8C204C9A8AE13BBB /* Settings */ = {isa = PBXGroup; children = (0324730B013240E9A2BCDC03); name = Settings; sourceTree = "<group>"; };
+		3A44F4DCA7E74CB99AAA3D4E /* Services */ = {isa = PBXGroup; children = (B1BF209124CD4926AD07C9DD, 8F6D01CDED4C435EA948F3F5, 9E091D04CB7A4987B70D7790, AD6880BA6DC84D708C2EE381); name = Services; sourceTree = "<group>"; };
+		A08E4A6CD89B4399A5C7E403 /* Models */ = {isa = PBXGroup; children = (B6E2D51F3AE0424BB47F546B, 5147A60500C041988BD1E6F8); name = Models; sourceTree = "<group>"; };
+		311138C2C63B4234879F353C /* NetTracker */ = {isa = PBXGroup; children = (E4F4A5C029D44388A43CD9BB, C12F737BAC9A42F3AB953467, 0A6EDB1A8C204C9A8AE13BBB, 3A44F4DCA7E74CB99AAA3D4E, A08E4A6CD89B4399A5C7E403, E89C701D91AC4994A5C1F437, B310F629BF4447BBA0836F9A); path = NetTracker; sourceTree = "<group>"; };
+		29528AA83AB146A398250389 /* Products */ = {isa = PBXGroup; children = (670E4E85ED3C4CB290F13E2D); name = Products; sourceTree = "<group>"; };
+		CD01EF16E90143F592E6AE64 = {isa = PBXGroup; children = (311138C2C63B4234879F353C, 29528AA83AB146A398250389); sourceTree = "<group>"; };
+		784B859809F04F26B17024C1 /* AppState.swift in Sources */ = {isa = PBXBuildFile; fileRef = B89088378C2C4A64ABA9B202; };
+		16596D4746D0484EB951ABA3 /* NetTrackerApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DA09E04896642CCBB796C27; };
+		7EA0AB1DBD1C4F83BDC0A0A5 /* Last7DaysMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEB75CE5483249D1ACCAA6DE; };
+		420990417A3143F1B14CF5EC /* MenuBarStatusView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D82A54D8FB04619B51BA974; };
+		95B6CA69AD2943B5B05A677F /* StatusMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB6134A6DC6242BDA5ECF70D; };
+		EC4191E89AE44BA58D126139 /* TodaySection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7800D75124C640B8AB10D847; };
+		ED8B5D1935EC4F73BCE54554 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0324730B013240E9A2BCDC03; };
+		761DECF179304C1F9DB911A7 /* GoAgentClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1BF209124CD4926AD07C9DD; };
+		9A31C3E706D34EDEAAECC23A /* LoginItemManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F6D01CDED4C435EA948F3F5; };
+		2AE1D834DB074C60B7208913 /* NetworkMonitor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E091D04CB7A4987B70D7790; };
+		6A798B0B9A4D4740BECF2B37 /* SleepMonitor.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD6880BA6DC84D708C2EE381; };
+		9E7D3A2A46FA45BC917FA8EF /* NetworkStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6E2D51F3AE0424BB47F546B; };
+		0C6421F7BD8643198C72B015 /* UsageSnapshot.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5147A60500C041988BD1E6F8; };
+		26EE088118634F9D9B51C09F = {isa = PBXSourcesBuildPhase; buildActionMask = 2147483647; files = (784B859809F04F26B17024C1, 16596D4746D0484EB951ABA3, 7EA0AB1DBD1C4F83BDC0A0A5, 420990417A3143F1B14CF5EC, 95B6CA69AD2943B5B05A677F, EC4191E89AE44BA58D126139, ED8B5D1935EC4F73BCE54554, 761DECF179304C1F9DB911A7, 9A31C3E706D34EDEAAECC23A, 2AE1D834DB074C60B7208913, 6A798B0B9A4D4740BECF2B37, 9E7D3A2A46FA45BC917FA8EF, 0C6421F7BD8643198C72B015); runOnlyForDeploymentPostprocessing = 0; };
+		E2675482F30042359B03D35B = {isa = PBXResourcesBuildPhase; buildActionMask = 2147483647; files = (); runOnlyForDeploymentPostprocessing = 0; };
+		5865F8811A3B488194814535 = {isa = PBXFrameworksBuildPhase; buildActionMask = 2147483647; files = (); runOnlyForDeploymentPostprocessing = 0; };
+		911FDD13F8E94B7D8A155658 = {isa = PBXNativeTarget; buildConfigurationList = B3A290F69C6248BF9E101D1C; buildPhases = (26EE088118634F9D9B51C09F, 5865F8811A3B488194814535, E2675482F30042359B03D35B); buildRules = (); dependencies = (); name = NetTracker; productName = NetTracker; productReference = 670E4E85ED3C4CB290F13E2D; productType = "com.apple.product-type.application"; };
+		50B27042FCC249FEA37224DA = {isa = PBXProject; buildConfigurationList = 9335E092E0874872887C920F; compatibilityVersion = "Xcode 15.0"; developmentRegion = en; hasScannedForEncodings = 0; knownRegions = (en); mainGroup = CD01EF16E90143F592E6AE64; productRefGroup = 29528AA83AB146A398250389; projectDirPath = ""; projectRoot = ""; targets = (911FDD13F8E94B7D8A155658); };
+		9B044EEDFC12420AA0F1DB9A = {isa = XCBuildConfiguration; buildSettings = {ALWAYS_SEARCH_USER_PATHS = NO; CLANG_ENABLE_MODULES = YES; CURRENT_PROJECT_VERSION = 1; MARKETING_VERSION = 0.1.0; PRODUCT_BUNDLE_IDENTIFIER = com.nettracker.app; PRODUCT_NAME = NetTracker; SWIFT_VERSION = 5.0; }; name = Debug; };
+		99FE41AB66E144378326104A = {isa = XCBuildConfiguration; buildSettings = {ALWAYS_SEARCH_USER_PATHS = NO; CLANG_ENABLE_MODULES = YES; CURRENT_PROJECT_VERSION = 1; MARKETING_VERSION = 0.1.0; PRODUCT_BUNDLE_IDENTIFIER = com.nettracker.app; PRODUCT_NAME = NetTracker; SWIFT_VERSION = 5.0; }; name = Release; };
+		4C181969A3B742B0992EA858 = {isa = XCBuildConfiguration; buildSettings = {CODE_SIGN_STYLE = Automatic; CURRENT_PROJECT_VERSION = 1; DEVELOPMENT_TEAM = ""; INFOPLIST_FILE = NetTracker/Info.plist; LD_RUNPATH_SEARCH_PATHS = "@executable_path/../Frameworks"; MACOSX_DEPLOYMENT_TARGET = 14.0; MARKETING_VERSION = 0.1.0; PRODUCT_BUNDLE_IDENTIFIER = com.nettracker.app; PRODUCT_NAME = "$(TARGET_NAME)"; SDKROOT = macosx; SKIP_INSTALL = YES; SWIFT_EMIT_LOC_STRINGS = YES; SWIFT_VERSION = 5.0; CODE_SIGN_IDENTITY = "-"; }; name = Debug; };
+		D5584B7318DE465C887BA57C = {isa = XCBuildConfiguration; buildSettings = {CODE_SIGN_STYLE = Automatic; CURRENT_PROJECT_VERSION = 1; DEVELOPMENT_TEAM = ""; INFOPLIST_FILE = NetTracker/Info.plist; LD_RUNPATH_SEARCH_PATHS = "@executable_path/../Frameworks"; MACOSX_DEPLOYMENT_TARGET = 14.0; MARKETING_VERSION = 0.1.0; PRODUCT_BUNDLE_IDENTIFIER = com.nettracker.app; PRODUCT_NAME = "$(TARGET_NAME)"; SDKROOT = macosx; SKIP_INSTALL = YES; SWIFT_EMIT_LOC_STRINGS = YES; SWIFT_VERSION = 5.0; CODE_SIGN_IDENTITY = "-"; }; name = Release; };
+		9335E092E0874872887C920F = {isa = XCConfigurationList; buildConfigurations = (9B044EEDFC12420AA0F1DB9A, 99FE41AB66E144378326104A); defaultConfigurationIsVisible = 0; defaultConfigurationName = Release; };
+		B3A290F69C6248BF9E101D1C = {isa = XCConfigurationList; buildConfigurations = (4C181969A3B742B0992EA858, D5584B7318DE465C887BA57C); defaultConfigurationIsVisible = 0; defaultConfigurationName = Release; };
+	};
+	rootObject = 50B27042FCC249FEA37224DA;
+}
