@@ -57,7 +57,7 @@ fi
 cp "$ROOT/macos/NetTracker/Info.plist" "$CONTENTS/Info.plist"
 cp "$AGENT" "$CONTENTS/Library/LoginItems/NetTrackerAgent"
 chmod +x "$CONTENTS/MacOS/NetTracker" "$CONTENTS/Library/LoginItems/NetTrackerAgent"
-if [ -f "$ROOT/macos/NetTracker/Resources/AppIcon.icns" ]; then
-  cp "$ROOT/macos/NetTracker/Resources/AppIcon.icns" "$CONTENTS/Resources/"
+if [ -d "$ROOT/macos/NetTracker/Resources" ]; then
+  cp -R "$ROOT/macos/NetTracker/Resources/"* "$CONTENTS/Resources/"
 fi
 echo "bundled $APP"

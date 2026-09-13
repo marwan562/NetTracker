@@ -182,64 +182,84 @@ struct GeneralSettingsView: View {
 }
 
 struct AboutView: View {
+    private var logoImage: NSImage? {
+        if let url = Bundle.main.url(forResource: "logo", withExtension: "png"),
+           let img = NSImage(contentsOf: url) {
+            return img
+        }
+        if let devImg = NSImage(contentsOfFile: "assets/logo.png") {
+            return devImg
+        }
+        return nil
+    }
+
+    private var appIconImage: NSImage? {
+        if let url = Bundle.main.url(forResource: "AppIcon", withExtension: "icns"),
+           let img = NSImage(contentsOf: url) {
+            return img
+        }
+        return NSApplication.shared.applicationIconImage
+    }
+
     var body: some View {
         VStack(spacing: 16) {
             Spacer()
 
-            // Icon with decorative background
-            ZStack {
-                Circle()
-                    .fill(
-                        LinearGradient(
-                            colors: [Color.blue.opacity(0.8), Color.purple.opacity(0.8)],
-                            startPoint: .topLeading,
-                            endPoint: .bottomTrailing
-                        )
-                    )
-                    .frame(width: 80, height: 80)
-                    .shadow(color: Color.blue.opacity(0.3), radius: 10, x: 0, y: 5)
-
-                Image(systemName: "waveform.path.ecg")
-                    .font(.system(size: 40, weight: .semibold))
-                    .foregroundStyle(.white)
+            // NetTracker Official Logo
+            if let logo = logoImage {
+                Image(nsImage: logo)
+                    .resizable()
+                    .aspectRatio(contentMode: .fit)
+                    .frame(height: 92)
+                    .shadow(color: Color.black.opacity(0.1), radius: 6, x: 0, y: 3)
+            } else if let icon = appIconImage {
+                Image(nsImage: icon)
+                    .resizable()
+                    .aspectRatio(contentMode: .fit)
+                    .frame(width: 88, height: 88)
+                    .shadow(color: Color.black.opacity(0.15), radius: 8, x: 0, y: 4)
+            } else {
+                Image(systemName: "antenna.radiowaves.left.and.right")
+                    .font(.system(size: 48))
+                    .foregroundStyle(.blue)
             }
 
             VStack(spacing: 4) {
                 Text("NetTracker")
-                    .font(.title)
+                    .font(.title2)
                     .fontWeight(.bold)
 
-                Text("Version 0.1.0")
+                Text("Version 0.1.0 (Build 1)")
                     .font(.subheadline)
                     .foregroundStyle(.secondary)
             }
 
-            Text("Native, lightweight network usage tracker built for the macOS ecosystem.")
+            Text("Native macOS menu bar network usage tracker built with SwiftUI and Go.")
                 .font(.body)
                 .foregroundStyle(.secondary)
                 .multilineTextAlignment(.center)
-                .frame(maxWidth: 400)
+                .frame(maxWidth: 420)
 
             // Feature Highlights
-            HStack(spacing: 20) {
+            HStack(spacing: 16) {
                 featureBadge(icon: "swift", title: "SwiftUI Front-End", subtitle: "macOS HIG native")
                 featureBadge(icon: "bolt.fill", title: "Go Core Engine", subtitle: "Kernel counter sampling")
-                featureBadge(icon: "lock.shield.fill", title: "Privacy First", subtitle: "No packet inspection")
+                featureBadge(icon: "lock.shield.fill", title: "Privacy First", subtitle: "Zero packet inspection")
             }
-            .padding(.top, 10)
+            .padding(.top, 6)
 
             Spacer()
 
             Divider()
 
             HStack {
-                Text("Created with care for macOS.")
+                Text("Created for macOS 14+ • Local-First Architecture")
                     .font(.caption)
                     .foregroundStyle(.tertiary)
 
                 Spacer()
 
-                Link(destination: URL(string: "https://github.com/marwan562/netracker")!) {
+                Link(destination: URL(string: "https://github.com/marwan562/NetTracker")!) {
                     HStack(spacing: 4) {
                         Image(systemName: "link")
                         Text("GitHub Repository")

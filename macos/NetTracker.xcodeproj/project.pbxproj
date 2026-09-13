@@ -23,13 +23,14 @@
 		E89C701D91AC4994A5C1F437 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		B310F629BF4447BBA0836F9A /* NetTracker.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = NetTracker.entitlements; sourceTree = "<group>"; };
 		4E71B0A22DE8431AA1000002 /* AppIcon.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = AppIcon.icns; sourceTree = "<group>"; };
+		4E71B0A42DE8431AA1000004 /* logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = logo.png; sourceTree = "<group>"; };
 		670E4E85ED3C4CB290F13E2D /* NetTracker.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NetTracker.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E4F4A5C029D44388A43CD9BB /* App */ = {isa = PBXGroup; children = (B89088378C2C4A64ABA9B202, 6DA09E04896642CCBB796C27); path = App; sourceTree = "<group>"; };
 		C12F737BAC9A42F3AB953467 /* MenuBar */ = {isa = PBXGroup; children = (CEB75CE5483249D1ACCAA6DE, 4D82A54D8FB04619B51BA974, AB6134A6DC6242BDA5ECF70D, 7800D75124C640B8AB10D847); path = MenuBar; sourceTree = "<group>"; };
 		0A6EDB1A8C204C9A8AE13BBB /* Settings */ = {isa = PBXGroup; children = (0324730B013240E9A2BCDC03, 7C3402C53DE8554BB250C022); path = Settings; sourceTree = "<group>"; };
 		3A44F4DCA7E74CB99AAA3D4E /* Services */ = {isa = PBXGroup; children = (B1BF209124CD4926AD07C9DD, 8F6D01CDED4C435EA948F3F5, 9E091D04CB7A4987B70D7790, AD6880BA6DC84D708C2EE381, 8A1201B42CD7443AA149B011, 5E6703D42EA9665CC361D033); path = Services; sourceTree = "<group>"; };
 		A08E4A6CD89B4399A5C7E403 /* Models */ = {isa = PBXGroup; children = (B6E2D51F3AE0424BB47F546B, 5147A60500C041988BD1E6F8); path = Models; sourceTree = "<group>"; };
-		4E71B0A32DE8431AA1000003 /* Resources */ = {isa = PBXGroup; children = (4E71B0A22DE8431AA1000002); path = Resources; sourceTree = "<group>"; };
+		4E71B0A32DE8431AA1000003 /* Resources */ = {isa = PBXGroup; children = (4E71B0A22DE8431AA1000002, 4E71B0A42DE8431AA1000004); path = Resources; sourceTree = "<group>"; };
 		311138C2C63B4234879F353C /* NetTracker */ = {isa = PBXGroup; children = (E4F4A5C029D44388A43CD9BB, C12F737BAC9A42F3AB953467, 0A6EDB1A8C204C9A8AE13BBB, 3A44F4DCA7E74CB99AAA3D4E, A08E4A6CD89B4399A5C7E403, 4E71B0A32DE8431AA1000003, E89C701D91AC4994A5C1F437, B310F629BF4447BBA0836F9A); path = NetTracker; sourceTree = "<group>"; };
 		29528AA83AB146A398250389 /* Products */ = {isa = PBXGroup; children = (670E4E85ED3C4CB290F13E2D); name = Products; sourceTree = "<group>"; };
 		CD01EF16E90143F592E6AE64 = {isa = PBXGroup; children = (311138C2C63B4234879F353C, 29528AA83AB146A398250389); sourceTree = "<group>"; };
@@ -50,8 +51,9 @@
 		9E7D3A2A46FA45BC917FA8EF /* NetworkStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6E2D51F3AE0424BB47F546B; };
 		0C6421F7BD8643198C72B015 /* UsageSnapshot.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5147A60500C041988BD1E6F8; };
 		4E71B0A12DE8431AA1000001 /* AppIcon.icns in Resources */ = {isa = PBXBuildFile; fileRef = 4E71B0A22DE8431AA1000002; };
+		4E71B0A52DE8431AA1000005 /* logo.png in Resources */ = {isa = PBXBuildFile; fileRef = 4E71B0A42DE8431AA1000004; };
 		26EE088118634F9D9B51C09F = {isa = PBXSourcesBuildPhase; buildActionMask = 2147483647; files = (784B859809F04F26B17024C1, 16596D4746D0484EB951ABA3, 7EA0AB1DBD1C4F83BDC0A0A5, 420990417A3143F1B14CF5EC, 95B6CA69AD2943B5B05A677F, EC4191E89AE44BA58D126139, ED8B5D1935EC4F73BCE54554, 7C3402C63DE8554BB250C023, 8A1201B52CD7443AA149B012, 5E6703D52EA9665CC361D034, 761DECF179304C1F9DB911A7, 9A31C3E706D34EDEAAECC23A, 2AE1D834DB074C60B7208913, 6A798B0B9A4D4740BECF2B37, 9E7D3A2A46FA45BC917FA8EF, 0C6421F7BD8643198C72B015); runOnlyForDeploymentPostprocessing = 0; };
-		E2675482F30042359B03D35B = {isa = PBXResourcesBuildPhase; buildActionMask = 2147483647; files = (4E71B0A12DE8431AA1000001); runOnlyForDeploymentPostprocessing = 0; };
+		E2675482F30042359B03D35B = {isa = PBXResourcesBuildPhase; buildActionMask = 2147483647; files = (4E71B0A12DE8431AA1000001, 4E71B0A52DE8431AA1000005); runOnlyForDeploymentPostprocessing = 0; };
 		5865F8811A3B488194814535 = {isa = PBXFrameworksBuildPhase; buildActionMask = 2147483647; files = (); runOnlyForDeploymentPostprocessing = 0; };
 		911FDD13F8E94B7D8A155658 = {isa = PBXNativeTarget; buildConfigurationList = B3A290F69C6248BF9E101D1C; buildPhases = (26EE088118634F9D9B51C09F, 5865F8811A3B488194814535, E2675482F30042359B03D35B); buildRules = (); dependencies = (); name = NetTracker; productName = NetTracker; productReference = 670E4E85ED3C4CB290F13E2D; productType = "com.apple.product-type.application"; };
 		50B27042FCC249FEA37224DA = {isa = PBXProject; buildConfigurationList = 9335E092E0874872887C920F; compatibilityVersion = "Xcode 15.0"; developmentRegion = en; hasScannedForEncodings = 0; knownRegions = (en); mainGroup = CD01EF16E90143F592E6AE64; productRefGroup = 29528AA83AB146A398250389; projectDirPath = ""; projectRoot = ""; targets = (911FDD13F8E94B7D8A155658); };
