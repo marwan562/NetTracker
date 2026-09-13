@@ -17,8 +17,14 @@ if [ -d "$ROOT/macos/NetTracker.xcodeproj" ] && xcodebuild -version >/dev/null 2
   xcodebuild -project "$ROOT/macos/NetTracker.xcodeproj" -scheme NetTracker \
     -configuration Release -derivedDataPath "$ROOT/build/DerivedData" \
     CODE_SIGN_IDENTITY="${CODE_SIGN_IDENTITY:--}" CODE_SIGNING_ALLOWED=YES
-  BUILT="$ROOT/build/DerivedData/Build/Products/Release/NetTracker"
-  cp "$BUILT" "$CONTENTS/MacOS/NetTracker"
+  if [ -f "$ROOT/build/DerivedData/Build/Products/Release/NetTracker.app/Contents/MacOS/NetTracker" ]; then
+    cp "$ROOT/build/DerivedData/Build/Products/Release/NetTracker.app/Contents/MacOS/NetTracker" "$CONTENTS/MacOS/NetTracker"
+  elif [ -f "$ROOT/build/DerivedData/Build/Products/Release/NetTracker" ]; then
+    cp "$ROOT/build/DerivedData/Build/Products/Release/NetTracker" "$CONTENTS/MacOS/NetTracker"
+  else
+    echo "could not find built NetTracker binary in DerivedData" >&2
+    exit 1
+  fi
 else
   SDK="$(xcrun --show-sdk-path --sdk macosx)"
   STRIPDIR="$ROOT/build/swift-strip"
