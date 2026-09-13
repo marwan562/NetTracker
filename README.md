@@ -10,8 +10,8 @@
 </p>
 
 <p align="center">
-  <a href="https://github.com/marwan562/netracker/releases/latest"><img src="https://img.shields.io/github/v/release/marwan562/netracker?style=flat-square&color=2E8CA5" alt="Latest Release" /></a>
-  <a href="https://github.com/marwan562/netracker/actions/workflows/ci.yml"><img src="https://img.shields.io/github/actions/workflow/status/marwan562/netracker/ci.yml?branch=main&style=flat-square" alt="CI Status" /></a>
+  <a href="https://github.com/marwan562/NetTracker/releases/latest"><img src="https://img.shields.io/github/v/release/marwan562/NetTracker?style=flat-square&color=2E8CA5" alt="Latest Release" /></a>
+  <a href="https://github.com/marwan562/NetTracker/actions/workflows/ci.yml"><img src="https://img.shields.io/github/actions/workflow/status/marwan562/NetTracker/ci.yml?branch=main&style=flat-square" alt="CI Status" /></a>
   <img src="https://img.shields.io/badge/platform-macOS%2014%2B-blue?style=flat-square" alt="macOS 14+" />
   <img src="https://img.shields.io/badge/license-MIT-green?style=flat-square" alt="License: MIT" />
 </p>
@@ -38,7 +38,7 @@
 
 ### Option 1: Install via DMG (Recommended)
 
-1. Download the latest **[NetTracker.dmg](https://github.com/marwan562/netracker/releases/latest/download/NetTracker.dmg)** from the [Releases](https://github.com/marwan562/netracker/releases) page.
+1. Download the latest **[NetTracker.dmg](https://github.com/marwan562/NetTracker/releases/latest/download/NetTracker.dmg)** from the [Releases](https://github.com/marwan562/NetTracker/releases) page.
 2. Double-click `NetTracker.dmg` to open the installer.
 3. Drag **NetTracker** into the **Applications** folder shortcut.
 4. Launch **NetTracker** from your Applications folder or Spotlight (`⌘ Space`).
@@ -64,8 +64,8 @@
 
 ```sh
 # Clone the repository
-git clone https://github.com/marwan562/netracker.git
-cd netracker
+git clone https://github.com/marwan562/NetTracker.git
+cd NetTracker
 
 # Run Go tests and linter
 make test
