@@ -96,12 +96,21 @@ jobs:
           name: NetTracker.dmg
           path: build/NetTracker.dmg
 
-      - name: Create GitHub Release
+      - name: Publish GitHub Release
         if: startsWith(github.ref, 'refs/tags/v')
-        uses: softprops/action-gh-release@v2
-        with:
-          files: build/NetTracker.dmg
-          generate_release_notes: true
-          draft: false
-          prerelease: false
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          TAG="${{ github.ref_name }}"
+          echo "Processing release for tag $TAG..."
+          if gh release view "$TAG" >/dev/null 2>&1; then
+            echo "Release $TAG exists, uploading NetTracker.dmg..."
+            gh release upload "$TAG" build/NetTracker.dmg --clobber
+          else
+            echo "Creating new release $TAG..."
+            gh release create "$TAG" build/NetTracker.dmg \
+              --title "NetTracker $TAG" \
+              --generate-notes
+          fi
+
 
