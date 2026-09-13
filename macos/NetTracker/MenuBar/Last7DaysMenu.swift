@@ -4,15 +4,16 @@ struct Last7DaysMenu: View {
     @EnvironmentObject var appState: AppState
 
     var body: some View {
-        Menu("Last 7 Days") {
+        Menu("Recent Days (Summary)") {
             if appState.last7Days.isEmpty {
-                Text("No history yet")
+                Text("No history recorded yet")
             } else {
                 ForEach(appState.last7Days.reversed()) { day in
-                    Button("\(day.label): \(ByteFormat.string(bytes: day.downloadBytes + day.uploadBytes))") {
-                        SoundManager.shared.playSelect()
-                        WindowManager.shared.showSettings(tab: .history)
-                    }
+                    Text("\(day.label): \(ByteFormat.string(bytes: day.downloadBytes + day.uploadBytes))")
+                }
+                Divider()
+                Button("Open History Matrix...") {
+                    WindowManager.shared.showSettings(tab: .history)
                 }
             }
         }

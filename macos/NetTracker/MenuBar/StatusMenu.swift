@@ -10,7 +10,6 @@ struct StatusMenu: View {
                 .font(.headline)
 
             Button("Open Usage History...") {
-                SoundManager.shared.playSelect()
                 WindowManager.shared.showSettings(tab: .history)
             }
 
@@ -39,7 +38,6 @@ struct StatusMenu: View {
             Divider()
 
             Button("Settings...") {
-                SoundManager.shared.playSelect()
                 WindowManager.shared.showSettings(tab: .general)
             }
 

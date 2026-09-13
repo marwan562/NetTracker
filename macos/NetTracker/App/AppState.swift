@@ -1,3 +1,4 @@
+import AppKit
 import Foundation
 
 @MainActor
@@ -12,9 +13,36 @@ class AppState: ObservableObject {
 
     private let client: GoAgentClientProtocol
     private var pollTask: Task<Void, Never>?
+    private var isMenuTracking: Bool = false
+    private var trackingObservers: [NSObjectProtocol] = []
 
     init(client: GoAgentClientProtocol = GoAgentClient()) {
         self.client = client
+        setupTrackingObservers()
+    }
+
+    private func setupTrackingObservers() {
+        let start = NotificationCenter.default.addObserver(
+            forName: NSMenu.didBeginTrackingNotification,
+            object: nil,
+            queue: .main
+        ) { [weak self] _ in
+            Task { @MainActor in
+                self?.isMenuTracking = true
+            }
+        }
+
+        let end = NotificationCenter.default.addObserver(
+            forName: NSMenu.didEndTrackingNotification,
+            object: nil,
+            queue: .main
+        ) { [weak self] _ in
+            Task { @MainActor in
+                self?.isMenuTracking = false
+            }
+        }
+
+        trackingObservers = [start, end]
     }
 
     private var lastHistoryFetch: Date = .distantPast
@@ -33,13 +61,20 @@ class AppState: ObservableObject {
         while !Task.isCancelled {
             do {
                 let snap = try await client.getSnapshot()
-                snapshot = snap
-                agentConnection = .connected
-                if historyDays.isEmpty || Date().timeIntervalSince(lastHistoryFetch) >= 30 {
-                    await fetchHistory(days: selectedHistoryRange)
+                // Never mutate @Published properties while an NSMenu is tracking.
+                // Modifying observed state while a menu is open forces AppKit to rebuild
+                // the active menu under the mouse pointer, abruptly dismissing it or causing conflicts.
+                if !isMenuTracking {
+                    snapshot = snap
+                    agentConnection = .connected
+                    if historyDays.isEmpty || Date().timeIntervalSince(lastHistoryFetch) >= 30 {
+                        await fetchHistory(days: selectedHistoryRange)
+                    }
                 }
             } catch {
-                agentConnection = .disconnected(error.localizedDescription)
+                if !isMenuTracking {
+                    agentConnection = .disconnected(error.localizedDescription)
+                }
             }
             try? await Task.sleep(nanoseconds: 1_000_000_000)
         }
@@ -61,7 +96,6 @@ class AppState: ObservableObject {
     func setHistoryRange(_ range: Int) async {
         guard selectedHistoryRange != range else { return }
         selectedHistoryRange = range
-        SoundManager.shared.playSelect()
         await fetchHistory(days: range)
     }
 

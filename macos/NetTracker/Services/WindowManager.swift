@@ -63,7 +63,6 @@ final class WindowManager: NSObject, ObservableObject, NSWindowDelegate {
 
     /// Display confirmation alert before resetting statistics
     func confirmAndReset() {
-        SoundManager.shared.playSelect()
         let alert = NSAlert()
         alert.messageText = "Reset Network Usage Statistics?"
         alert.informativeText = "This will reset your current session and today's byte counters to zero. Historical days will remain intact."

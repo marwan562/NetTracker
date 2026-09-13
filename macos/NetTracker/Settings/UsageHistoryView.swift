@@ -77,7 +77,6 @@ struct UsageHistoryView: View {
 
                     // Refresh button
                     Button {
-                        SoundManager.shared.playSelect()
                         Task { await appState.refreshHistory() }
                     } label: {
                         Image(systemName: "arrow.clockwise")
