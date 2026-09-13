@@ -3,7 +3,7 @@ import SwiftUI
 struct StatusMenu: View {
     @EnvironmentObject var appState: AppState
     @EnvironmentObject var networkMonitor: NetworkMonitor
-    @Environment(\.openSettings) private var openSettings
+    @Environment(\EnvironmentValues.openSettings) private var openSettings
 
     var body: some View {
         Group {
