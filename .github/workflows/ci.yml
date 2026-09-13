@@ -3,8 +3,12 @@ name: CI
 on:
   push:
     branches: [ main ]
+    tags: [ 'v*' ]
   pull_request:
     branches: [ main ]
+
+permissions:
+  contents: write
 
 jobs:
   go-lint-test:
@@ -55,6 +59,9 @@ jobs:
           go-version: '1.23'
           cache-dependency-path: agent/go.sum
 
+      - name: Install create-dmg
+        run: brew install create-dmg || true
+
       - name: Build Agent Binary
         run: sh scripts/build.sh
 
@@ -66,12 +73,35 @@ jobs:
           test -f build/NetTracker.app/Contents/MacOS/NetTracker
           test -f build/NetTracker.app/Contents/Library/LoginItems/NetTrackerAgent
           test -f build/NetTracker.app/Contents/Info.plist
+          test -f build/NetTracker.app/Contents/Resources/AppIcon.icns
 
       - name: Ad-hoc Sign App Bundle
         run: sh scripts/sign.sh
+
+      - name: Build DMG Installer
+        run: sh scripts/dmg.sh
+
+      - name: Verify DMG
+        run: test -f build/NetTracker.dmg
 
       - name: Upload App Artifact
         uses: actions/upload-artifact@v4
         with:
           name: NetTracker.app
           path: build/NetTracker.app
+
+      - name: Upload DMG Artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: NetTracker.dmg
+          path: build/NetTracker.dmg
+
+      - name: Create GitHub Release
+        if: startsWith(github.ref, 'refs/tags/v')
+        uses: softprops/action-gh-release@v2
+        with:
+          files: build/NetTracker.dmg
+          generate_release_notes: true
+          draft: false
+          prerelease: false
+
