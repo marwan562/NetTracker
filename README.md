@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="assets/logo.png" alt="NetTracker Logo" width="220" />
+  <img src="assets/app-icon.png" alt="NetTracker Logo" width="220" />
 </p>
 
 <h1 align="center">NetTracker</h1>
