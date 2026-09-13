@@ -3,7 +3,6 @@ import SwiftUI
 struct StatusMenu: View {
     @EnvironmentObject var appState: AppState
     @EnvironmentObject var networkMonitor: NetworkMonitor
-    @Environment(\EnvironmentValues.openSettings) private var openSettings
 
     var body: some View {
         Group {
@@ -25,7 +24,7 @@ struct StatusMenu: View {
             Divider()
             Button("Settings...") {
                 NSApp.activate(ignoringOtherApps: true)
-                openSettings()
+                NSApp.sendAction(Selector(("showSettingsWindow:")), to: nil, from: nil)
             }
             Button("Reset Statistics") {
                 Task { await appState.resetStatistics() }
