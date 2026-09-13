@@ -20,11 +20,11 @@
 		E89C701D91AC4994A5C1F437 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		B310F629BF4447BBA0836F9A /* NetTracker.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = NetTracker.entitlements; sourceTree = "<group>"; };
 		670E4E85ED3C4CB290F13E2D /* NetTracker.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NetTracker.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		E4F4A5C029D44388A43CD9BB /* App */ = {isa = PBXGroup; children = (B89088378C2C4A64ABA9B202, 6DA09E04896642CCBB796C27); name = App; sourceTree = "<group>"; };
-		C12F737BAC9A42F3AB953467 /* MenuBar */ = {isa = PBXGroup; children = (CEB75CE5483249D1ACCAA6DE, 4D82A54D8FB04619B51BA974, AB6134A6DC6242BDA5ECF70D, 7800D75124C640B8AB10D847); name = MenuBar; sourceTree = "<group>"; };
-		0A6EDB1A8C204C9A8AE13BBB /* Settings */ = {isa = PBXGroup; children = (0324730B013240E9A2BCDC03); name = Settings; sourceTree = "<group>"; };
-		3A44F4DCA7E74CB99AAA3D4E /* Services */ = {isa = PBXGroup; children = (B1BF209124CD4926AD07C9DD, 8F6D01CDED4C435EA948F3F5, 9E091D04CB7A4987B70D7790, AD6880BA6DC84D708C2EE381); name = Services; sourceTree = "<group>"; };
-		A08E4A6CD89B4399A5C7E403 /* Models */ = {isa = PBXGroup; children = (B6E2D51F3AE0424BB47F546B, 5147A60500C041988BD1E6F8); name = Models; sourceTree = "<group>"; };
+		E4F4A5C029D44388A43CD9BB /* App */ = {isa = PBXGroup; children = (B89088378C2C4A64ABA9B202, 6DA09E04896642CCBB796C27); path = App; sourceTree = "<group>"; };
+		C12F737BAC9A42F3AB953467 /* MenuBar */ = {isa = PBXGroup; children = (CEB75CE5483249D1ACCAA6DE, 4D82A54D8FB04619B51BA974, AB6134A6DC6242BDA5ECF70D, 7800D75124C640B8AB10D847); path = MenuBar; sourceTree = "<group>"; };
+		0A6EDB1A8C204C9A8AE13BBB /* Settings */ = {isa = PBXGroup; children = (0324730B013240E9A2BCDC03); path = Settings; sourceTree = "<group>"; };
+		3A44F4DCA7E74CB99AAA3D4E /* Services */ = {isa = PBXGroup; children = (B1BF209124CD4926AD07C9DD, 8F6D01CDED4C435EA948F3F5, 9E091D04CB7A4987B70D7790, AD6880BA6DC84D708C2EE381); path = Services; sourceTree = "<group>"; };
+		A08E4A6CD89B4399A5C7E403 /* Models */ = {isa = PBXGroup; children = (B6E2D51F3AE0424BB47F546B, 5147A60500C041988BD1E6F8); path = Models; sourceTree = "<group>"; };
 		311138C2C63B4234879F353C /* NetTracker */ = {isa = PBXGroup; children = (E4F4A5C029D44388A43CD9BB, C12F737BAC9A42F3AB953467, 0A6EDB1A8C204C9A8AE13BBB, 3A44F4DCA7E74CB99AAA3D4E, A08E4A6CD89B4399A5C7E403, E89C701D91AC4994A5C1F437, B310F629BF4447BBA0836F9A); path = NetTracker; sourceTree = "<group>"; };
 		29528AA83AB146A398250389 /* Products */ = {isa = PBXGroup; children = (670E4E85ED3C4CB290F13E2D); name = Products; sourceTree = "<group>"; };
 		CD01EF16E90143F592E6AE64 = {isa = PBXGroup; children = (311138C2C63B4234879F353C, 29528AA83AB146A398250389); sourceTree = "<group>"; };
